@@ -1,0 +1,71 @@
+<div class="container">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Angualr CLI Client Side People Picker</div>
+  <div class="panel-body">
+    <div class="conatiner">
+      <h3>Single User</h3>
+      <div class="conatiner">
+        <div class="col-sm-6">
+          <p-autoComplete [(ngModel)]="spuser" [suggestions]="users" (completeMethod)="filterSPUserSingle($event)" field="DisplayText"
+            [size]="30" placeholder="Find user" [minLength]="3">
+            <ng-template let-spuser pTemplate="item" styleClass="wid100">
+              <div class="row" style="border-bottom:1px solid #D5D5D5">
+                <div class="col-sm-4">
+                  <img class="user-img" src="{{BASE_PHOTO_URL+ spuser.EntityData.Email}}" />
+                </div>
+                <div class="col-sm-4">
+                  <div class="user-name">
+                    {{spuser.DisplayText}}
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="user-properties">
+                    {{spuser.EntityData.Title}}
+                  </div>
+                </div>               
+              </div>
+            </ng-template>
+          </p-autoComplete>
+        </div>
+      </div>
+      <div class="row">
+        <span style="margin-left:10px">Selected User: {{spuser ? spuser.DisplayText ||spuser : 'none'}}</span>
+      </div>
+    </div> 
+    <div class="conatiner">
+      <h3>Multiple Users</h3>
+      <div class="conatiner">
+        <div class="col-sm-6">
+          <p-autoComplete [(ngModel)]="spusers" [suggestions]="multipleUsers" (completeMethod)="filterSPUserMultiple($event)"[minLength]="1"
+            placeholder="Find Users" field="DisplayText" [multiple]="true">
+            <ng-template let-spuser pTemplate="item" styleClass="wid100">
+              <div class="row" style="border-bottom:1px solid #D5D5D5">
+                <div class="col-sm-4">
+                  <img class="user-img" src="{{BASE_PHOTO_URL + spuser.EntityData.Email}}" />
+                </div>
+                <div class="col-sm-4">
+                  <div class="user-name">
+                    {{spuser.DisplayText}}
+                  </div>
+                  <div class="user-properties">
+                    {{spuser.EntityData.Title}}
+                  </div>
+                </div>               
+              </div>
+            </ng-template>
+          </p-autoComplete>
+        </div>
+      </div>
+      
+    </div>
+    <div class="conatiner">
+      <span style="margin-left:10px">Selected Users: </span>
+      <ul>
+            <li *ngFor="let user of spusers">{{user.DisplayText}}</li>
+        </ul>
+    </div>
+  </div>
+</div>
+</div>
+
